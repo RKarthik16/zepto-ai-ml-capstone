@@ -94,3 +94,6 @@ From the project root with the virtual environment activated:
 
 ```powershell
 python data_pipeline\run_pipeline.py
+## Reproducibility
+
+The database is recreated from scratch whenever `database.py` runs. This prevents duplicate records when rebuilding the project from the cleaned CSV.
