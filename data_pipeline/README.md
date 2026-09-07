@@ -97,3 +97,11 @@ python data_pipeline\run_pipeline.py
 ## Reproducibility
 
 The database is recreated from scratch whenever `database.py` runs. This prevents duplicate records when rebuilding the project from the cleaned CSV.
+
+## Pipeline Output
+
+The pipeline produces three main artifacts:
+
+- `books_cleaned.csv` — cleaned scraped data
+- `books.db` — normalized SQLite database
+- `sql_results.txt` — SQL queries and their outputs
