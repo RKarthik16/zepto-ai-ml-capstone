@@ -17,3 +17,12 @@ __pycache__/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Generated databases
+*.db
+
+# ChromaDB
+chroma_db/
+
+# Model/cache files
+*.joblib
