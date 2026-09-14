@@ -1,0 +1,4 @@
+pclass,sex,age,sibsp,parch,fare,embarked,predicted_survival,survival_probability
+1,female,30,0,0,80.0,C,1,0.9844258181614635
+3,male,25,0,0,8.0,S,0,0.1123449589475491
+2,female,20,1,0,25.0,S,1,0.8196680122334148

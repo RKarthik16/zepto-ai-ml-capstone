@@ -1,0 +1,2 @@
+Best Parameters,Best CV F1,Test Accuracy,Test Precision,Test Recall,Test F1,Test ROC AUC,OOB Score
+"{'model__max_depth': 5, 'model__max_features': 'sqrt', 'model__n_estimators': 100}",0.7459285142059674,0.8156424581005587,0.875,0.6086956521739131,0.717948717948718,0.8431488801054018,0.827247191011236
