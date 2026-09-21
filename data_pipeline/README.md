@@ -105,3 +105,12 @@ The pipeline produces three main artifacts:
 - `books_cleaned.csv` — cleaned scraped data
 - `books.db` — normalized SQLite database
 - `sql_results.txt` — SQL queries and their outputs
+### SQL JOIN and Pandas JOIN Equivalence
+
+The JOIN query combines the `books` and `categories` tables using the shared `category_id` foreign key.
+
+The SQL implementation orders the joined records by `price_gbp` in descending order and returns the top 10 records.
+
+The same operation is reproduced in Pandas using `pd.merge()`, followed by `sort_values()` and `head(10)`.
+
+The resulting DataFrames are normalized to the same column order and compared using `DataFrame.equals()`. The comparison returns `True`, confirming that the SQL JOIN and Pandas implementation produce equivalent results.

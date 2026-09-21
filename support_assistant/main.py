@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException
 
 from support_assistant.graph import SupportAssistant
 from support_assistant.schemas import AskRequest, AskResponse
-
+from support_assistant.config import MOCK_LLM
 
 app = FastAPI(
     title="Zepto Support Assistant",
@@ -26,7 +26,7 @@ def root():
 def health():
     return {
         "status": "healthy",
-        "mock_llm": True,
+        "mock_llm": MOCK_LLM,
     }
 
 

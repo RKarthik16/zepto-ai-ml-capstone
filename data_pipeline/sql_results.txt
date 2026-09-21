@@ -4,8 +4,8 @@ Query 1 - SELECT and WHERE
 
 SQL:
 SELECT title, price_gbp, rating
-            FROM books
-            WHERE rating >= 4
+                FROM books
+                WHERE rating >= 4
 
 Result:
                                                                    title  price_gbp  rating
@@ -40,8 +40,8 @@ Query 2 - ORDER BY
 
 SQL:
 SELECT title, price_gbp
-            FROM books
-            ORDER BY price_gbp DESC
+                FROM books
+                ORDER BY price_gbp DESC
 
 Result:
                                                                                             title  price_gbp
@@ -130,9 +130,9 @@ Query 3 - LIMIT
 
 SQL:
 SELECT title, price_gbp
-            FROM books
-            ORDER BY price_gbp DESC
-            LIMIT 5
+                FROM books
+                ORDER BY price_gbp DESC
+                LIMIT 5
 
 Result:
                                                                  title  price_gbp
@@ -148,8 +148,8 @@ Query 4 - DISTINCT
 
 SQL:
 SELECT DISTINCT category_name
-            FROM categories
-            ORDER BY category_name
+                FROM categories
+                ORDER BY category_name
 
 Result:
 category_name
@@ -163,9 +163,9 @@ Query 5 - BETWEEN
 
 SQL:
 SELECT title, price_gbp, category_id
-            FROM books
-            WHERE price_gbp BETWEEN 20 AND 40
-            ORDER BY price_gbp
+                FROM books
+                WHERE price_gbp BETWEEN 20 AND 40
+                ORDER BY price_gbp
 
 Result:
                                                                                             title  price_gbp  category_id
@@ -210,33 +210,37 @@ Query 6 - JOIN
 
 SQL:
 SELECT
-                books.title,
-                books.price_gbp,
-                categories.category_name
-            FROM books
-            JOIN categories
-                ON books.category_id = categories.category_id
-            ORDER BY books.price_gbp DESC
-            LIMIT 10
+                    books.book_id,
+                    books.title,
+                    books.price_gbp,
+                    books.price_inr,
+                    books.rating,
+                    books.in_stock,
+                    categories.category_name
+                FROM books
+                JOIN categories
+                    ON books.category_id = categories.category_id
+                ORDER BY books.price_gbp DESC
+                LIMIT 10
 
 Result:
-                                                                 title  price_gbp category_name
-                                    The Perfect Play (Play by Play #1)      59.99       Romance
-                                         Boar Island (Anna Pigeon #19)      59.48       Mystery
-                                              Listen to Me (Fusion #1)      58.99       Romance
-The No. 1 Ladies' Detective Agency (No. 1 Ladies' Detective Agency #1)      57.70       Mystery
-                                      A Year in Provence (Provence #1)      56.88        Travel
-                                                   The Past Never Ends      56.50       Mystery
-                                                    A Walk to Remember      56.43       Romance
-                                      Suddenly in Love (Lake Haven #1)      55.99       Romance
-                 Murder at the 42nd Street Library (Raymond Ambler #1)      54.36       Mystery
-                                        The Last Mile (Amos Decker #2)      54.21       Mystery
+ book_id                                                                  title  price_gbp  price_inr  rating  in_stock category_name
+      61                                     The Perfect Play (Play by Play #1)      59.99    6328.95       3         1       Romance
+      26                                          Boar Island (Anna Pigeon #19)      59.48    6275.14       3         1       Mystery
+      73                                               Listen to Me (Fusion #1)      58.99    6223.45       3         1       Romance
+      39 The No. 1 Ladies' Detective Agency (No. 1 Ladies' Detective Agency #1)      57.70    6087.35       4         1       Mystery
+       8                                       A Year in Provence (Provence #1)      56.88    6000.84       4         1        Travel
+      14                                                    The Past Never Ends      56.50    5960.75       4         1       Mystery
+      64                                                     A Walk to Remember      56.43    5953.36       1         1       Romance
+      50                                       Suddenly in Love (Lake Haven #1)      55.99    5906.95       2         1       Romance
+      23                  Murder at the 42nd Street Library (Raymond Ambler #1)      54.36    5734.98       4         1       Mystery
+      17                                         The Last Mile (Amos Decker #2)      54.21    5719.15       2         1       Mystery
 
 ======================================================================
-Pandas read_sql demonstration
+Pandas read_sql() demonstration
 ======================================================================
 
-First read_sql result:
+First read_sql() result:
                                                                  title  price_gbp
                                     The Perfect Play (Play by Play #1)      59.99
                                          Boar Island (Anna Pigeon #19)      59.48
@@ -244,7 +248,7 @@ First read_sql result:
 The No. 1 Ladies' Detective Agency (No. 1 Ladies' Detective Agency #1)      57.70
                                       A Year in Provence (Provence #1)      56.88
 
-Second read_sql result:
+Second read_sql() result:
                                                                    title  rating category_name
                                       1,000 Places to See Before You Die       5        Travel
                                   A Time of Torment (Charlie Parker #14)       5       Mystery
@@ -258,16 +262,38 @@ The Bachelor Girl's Guide to Murder (Herringford and Watts Mysteries #1)       5
                                          Deep Under (Walker Security #1)       5       Romance
 
 ======================================================================
+SQL JOIN result
+======================================================================
+ book_id                                                                  title  price_gbp  price_inr  rating  in_stock category_name
+      61                                     The Perfect Play (Play by Play #1)      59.99    6328.95       3         1       Romance
+      26                                          Boar Island (Anna Pigeon #19)      59.48    6275.14       3         1       Mystery
+      73                                               Listen to Me (Fusion #1)      58.99    6223.45       3         1       Romance
+      39 The No. 1 Ladies' Detective Agency (No. 1 Ladies' Detective Agency #1)      57.70    6087.35       4         1       Mystery
+       8                                       A Year in Provence (Provence #1)      56.88    6000.84       4         1        Travel
+      14                                                    The Past Never Ends      56.50    5960.75       4         1       Mystery
+      64                                                     A Walk to Remember      56.43    5953.36       1         1       Romance
+      50                                       Suddenly in Love (Lake Haven #1)      55.99    5906.95       2         1       Romance
+      23                  Murder at the 42nd Street Library (Raymond Ambler #1)      54.36    5734.98       4         1       Mystery
+      17                                         The Last Mile (Amos Decker #2)      54.21    5719.15       2         1       Mystery
+
+======================================================================
 Pandas merge() equivalent of SQL JOIN
 ======================================================================
-                                                                                            title  price_gbp  rating  category_id category_name
-                                                                          It's Only the Himalayas      45.17       2            1        Travel
-                                 Full Moon over Noah’s Ark: An Odyssey to Mount Ararat and Beyond      49.43       4            1        Travel
-                               See America: A Celebration of Our National Parks & Treasured Sites      48.87       3            1        Travel
-                              Vagabonding: An Uncommon Guide to the Art of Long-Term World Travel      36.94       2            1        Travel
-                                                                             Under the Tuscan Sun      37.33       3            1        Travel
-                                                                               A Summer In Europe      44.34       2            1        Travel
-                                                                         The Great Railway Bazaar      30.54       1            1        Travel
-                                                                 A Year in Provence (Provence #1)      56.88       4            1        Travel
-The Road to Little Dribbling: Adventures of an American in Britain (Notes From a Small Island #2)      23.21       1            1        Travel
-                                                        Neither Here nor There: Travels in Europe      38.95       3            1        Travel
+ book_id                                                                  title  price_gbp  price_inr  rating  in_stock category_name
+      61                                     The Perfect Play (Play by Play #1)      59.99    6328.95       3         1       Romance
+      26                                          Boar Island (Anna Pigeon #19)      59.48    6275.14       3         1       Mystery
+      73                                               Listen to Me (Fusion #1)      58.99    6223.45       3         1       Romance
+      39 The No. 1 Ladies' Detective Agency (No. 1 Ladies' Detective Agency #1)      57.70    6087.35       4         1       Mystery
+       8                                       A Year in Provence (Provence #1)      56.88    6000.84       4         1        Travel
+      14                                                    The Past Never Ends      56.50    5960.75       4         1       Mystery
+      64                                                     A Walk to Remember      56.43    5953.36       1         1       Romance
+      50                                       Suddenly in Love (Lake Haven #1)      55.99    5906.95       2         1       Romance
+      23                  Murder at the 42nd Street Library (Raymond Ambler #1)      54.36    5734.98       4         1       Mystery
+      17                                         The Last Mile (Amos Decker #2)      54.21    5719.15       2         1       Mystery
+
+======================================================================
+SQL JOIN vs Pandas merge() equivalence
+======================================================================
+
+Do SQL JOIN and Pandas JOIN produce equivalent results?
+True

@@ -3,6 +3,10 @@ import pandas as pd
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent
+
 
 BASE_URL = "https://books.toscrape.com/"
 GBP_TO_INR = 105.50
@@ -120,9 +124,11 @@ def main():
     print("\nFirst 5 rows:")
     print(df.head())
 
-    df.to_csv("data_pipeline/books_cleaned.csv", index=False)
+    # Save cleaned dataset
+    OUTPUT_PATH = BASE_DIR / "books_cleaned.csv"
+    df.to_csv(OUTPUT_PATH, index=False)
 
-    print("\nSaved to data_pipeline/books_cleaned.csv")
+    print(f"\nCleaned dataset saved to: {OUTPUT_PATH}")
 
 
 if __name__ == "__main__":

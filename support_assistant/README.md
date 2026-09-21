@@ -46,3 +46,14 @@ The default configuration uses offline mock mode:
 
 ```text
 MOCK_LLM=1
+
+## Docker Deployment
+
+The Support Assistant can be run completely offline using the required `MOCK_LLM=1` mode.
+
+### Build the Docker image
+
+From the `support_assistant` directory:
+
+```bash
+docker build -t zepto-support-assistant .
