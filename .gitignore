@@ -24,7 +24,6 @@ Thumbs.db
 # ChromaDB
 chroma_db/
 
-# Model/cache files
-*.joblib
+
 # Generated Archives
 *.tar
